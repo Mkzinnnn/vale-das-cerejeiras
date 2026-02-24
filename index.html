@@ -3,168 +3,133 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vale das Cerejeiras</title>
+<title>Vale das Cerejeiras - Clã Minecraft</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
-
-body{
-background:linear-gradient(135deg,#000000,#1a001f);
-color:white;
-overflow-x:hidden;
-scroll-behavior:smooth;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
 }
 
-/* 🌸 FUNDO ANIMADO */
-.petala{
-position:fixed;
-top:-10px;
-width:15px;
-height:15px;
-background:radial-gradient(circle,#ffb6f9,#ff4fd8);
-border-radius:50% 50% 50% 0;
-opacity:0.8;
-animation: cair linear infinite;
-z-index:0;
+body {
+    background: linear-gradient(180deg, #0d001a, #1a0026);
+    color: white;
+    overflow-x: hidden;
 }
 
-@keyframes cair{
-0%{transform:translateY(0) rotate(0deg);}
-100%{transform:translateY(110vh) rotate(360deg);}
+/* Fundo animado */
+.petal {
+    position: fixed;
+    top: -10px;
+    width: 15px;
+    height: 15px;
+    background: pink;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: fall linear infinite;
 }
 
-header{
-position:relative;
-z-index:1;
-background:linear-gradient(90deg,#ff4fd8,#8a2be2);
-padding:30px;
-text-align:center;
-box-shadow:0 0 25px #ff4fd8;
-animation: glow 3s infinite alternate;
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
 }
 
-@keyframes glow{
-from{box-shadow:0 0 15px #ff4fd8;}
-to{box-shadow:0 0 35px #8a2be2;}
+header {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(90deg, #ff00cc, #8000ff);
 }
 
-nav{
-position:relative;
-z-index:1;
-background:#111;
-padding:15px;
-text-align:center;
+header h1 {
+    font-size: 40px;
 }
 
-nav a{
-color:#ff4fd8;
-margin:0 15px;
-text-decoration:none;
-font-weight:bold;
-transition:0.3s;
+nav {
+    background: black;
+    padding: 15px;
+    text-align: center;
 }
 
-nav a:hover{
-color:#8a2be2;
-text-shadow:0 0 15px #ff4fd8;
+nav a {
+    color: #ff4dff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-section{
-position:relative;
-z-index:1;
-padding:80px 20px;
-text-align:center;
-opacity:0;
-transform:translateY(50px);
-transition:1s;
+section {
+    padding: 60px 20px;
+    text-align: center;
 }
 
-section.show{
-opacity:1;
-transform:translateY(0);
+h2 {
+    margin-bottom: 30px;
+    font-size: 28px;
 }
 
-.container{
-max-width:900px;
-margin:auto;
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 
-.card{
-background:#1a001f;
-padding:25px;
-margin:20px;
-border-radius:15px;
-box-shadow:0 0 20px #8a2be2;
-transition:0.4s;
+.card {
+    background: #111;
+    padding: 30px;
+    width: 220px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #ff00cc;
+    transition: 0.4s;
 }
 
-.card:hover{
-transform:scale(1.05);
-box-shadow:0 0 30px #ff4fd8;
+.card:hover {
+    transform: scale(1.05);
 }
 
-.membros-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
+ul {
+    list-style: none;
+    max-width: 500px;
+    margin: auto;
+    text-align: left;
 }
 
-.membro{
-background:#111;
-padding:15px;
-border-radius:10px;
-box-shadow:0 0 15px #ff4fd8;
+ul li {
+    margin: 10px 0;
 }
 
-ul{list-style:none;}
-ul li{margin:10px 0;}
-
-form{
-display:flex;
-flex-direction:column;
-gap:15px;
-margin-top:20px;
+/* Formulário */
+form {
+    max-width: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-input, textarea{
-padding:12px;
-border:none;
-border-radius:8px;
-background:#111;
-color:white;
-outline:none;
+input, textarea {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
 }
 
-input:focus, textarea:focus{
-box-shadow:0 0 10px #ff4fd8;
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #ff00cc;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-button{
-background:#ff4fd8;
-color:black;
-border:none;
-padding:14px;
-border-radius:10px;
-cursor:pointer;
-font-weight:bold;
-transition:0.3s;
-}
-
-button:hover{
-background:#8a2be2;
-color:white;
-box-shadow:0 0 20px #ff4fd8;
-}
-
-footer{
-position:relative;
-z-index:1;
-background:black;
-padding:20px;
-text-align:center;
-margin-top:40px;
-color:#ff4fd8;
+button:hover {
+    background: #cc00aa;
 }
 </style>
 </head>
@@ -172,89 +137,80 @@ color:#ff4fd8;
 <body>
 
 <header>
-<h1>🌸 Vale das Cerejeiras 🌸</h1>
-<p>Clã Oficial de Minecraft</p>
+    <h1>🌸 Vale das Cerejeiras 🌸</h1>
+    <p>Clã Oficial de Minecraft</p>
 </header>
 
 <nav>
-<a href="#membros">Membros</a>
-<a href="#regras">Regras</a>
-<a href="#recrutamento">Recrutamento</a>
+    <a href="#membros">Membros</a>
+    <a href="#regras">Regras</a>
+    <a href="#recrutamento">Recrutamento</a>
 </nav>
 
 <section id="membros">
-<div class="container">
-<h2>⚔️ Membros</h2>
-<div class="membros-grid">
-<div class="membro"><h3>Líder</h3><p>Mkzinnnn</p></div>
-<div class="membro"><h3>Vice</h3><p>---</p></div>
-<div class="membro"><h3>Elite</h3><p>---</p></div>
-</div>
-</div>
+    <h2>⚔️ Membros</h2>
+    <div class="cards">
+
+        <div class="card">
+            <h3>Líder</h3>
+            <p>Mkzinhuu</p>
+        </div>
+
+        <div class="card">
+            <h3>Vice-Líder</h3>
+            <p>Lunemoon0</p>
+        </div>
+
+        <div class="card">
+            <h3>Vice-Líder</h3>
+            <p>AndreyBR18</p>
+        </div>
+
+        <div class="card">
+            <h3>Vice-Líder</h3>
+            <p>Icebfzin1</p>
+        </div>
+
+    </div>
 </section>
 
 <section id="regras">
-<div class="container">
-<h2>📜 Regras</h2>
-<div class="card">
-<ul>
-<li>✔ Respeitar todos</li>
-<li>✔ Participar das guerras</li>
-<li>✔ Não trair o clã</li>
-<li>✔ Ser ativo</li>
-<li>✔ Ajudar na evolução do Vale</li>
-</ul>
-</div>
-</div>
+    <h2>📜 Regras</h2>
+    <ul>
+        <li>✔ Respeitar todos</li>
+        <li>✔ Manter respeito mútuo</li>
+        <li>✔ Não ter preconceito com ninguém</li>
+        <li>✔ Participar das guerras</li>
+        <li>✔ Não trair o clã</li>
+        <li>✔ Ser ativo</li>
+    </ul>
 </section>
 
 <section id="recrutamento">
-<div class="container">
-<h2>🔥 Recrutamento</h2>
-<div class="card">
-<form action="https://formsubmit.co/vcerejeiras@gmail.com" method="POST">
-<input type="text" name="Nick" placeholder="Seu Nick no Minecraft" required>
-<input type="number" name="Idade" placeholder="Sua idade" required>
-<textarea name="Motivo" placeholder="Por que quer entrar no clã?" required></textarea>
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_subject" value="Novo Recrutamento - Vale das Cerejeiras">
-<button type="submit">Enviar Pedido</button>
-</form>
-</div>
-</div>
+    <h2>📩 Recrutamento</h2>
+    <form action="https://formsubmit.co/vcerejeiras@gmail.com" method="POST">
+        <input type="text" name="Nome" placeholder="Seu nome" required>
+        <input type="text" name="Nick" placeholder="Seu nick no Minecraft" required>
+        <input type="number" name="Idade" placeholder="Sua idade" required>
+        <textarea name="Motivo" placeholder="Por que quer entrar no clã?" required></textarea>
+
+        <input type="hidden" name="_captcha" value="false">
+
+        <button type="submit">Enviar Inscrição</button>
+    </form>
 </section>
 
-<footer>
-© 2026 Vale das Cerejeiras
-</footer>
-
 <script>
-// animação scroll
-const sections = document.querySelectorAll("section");
-window.addEventListener("scroll", () => {
-sections.forEach(sec => {
-const top = window.scrollY;
-const offset = sec.offsetTop - 400;
-if(top >= offset){
-sec.classList.add("show");
+// Criar pétalas animadas
+for (let i = 0; i < 25; i++) {
+    let petal = document.createElement("div");
+    petal.classList.add("petal");
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+    petal.style.opacity = Math.random();
+    document.body.appendChild(petal);
 }
-});
-});
-
-// gerar pétalas
-function criarPetala(){
-const petala = document.createElement("div");
-petala.classList.add("petala");
-petala.style.left = Math.random()*100 + "vw";
-petala.style.animationDuration = (Math.random()*5 + 5) + "s";
-petala.style.opacity = Math.random();
-document.body.appendChild(petala);
-
-setTimeout(()=>{petala.remove();},10000);
-}
-
-setInterval(criarPetala,300);
 </script>
 
 </body>
-  </html>
+                                     </html>
