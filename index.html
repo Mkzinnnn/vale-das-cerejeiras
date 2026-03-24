@@ -20,8 +20,8 @@ overflow-x:hidden;
 .petal{
 position:fixed;
 top:-10px;
-width:12px;
-height:12px;
+width:10px;
+height:10px;
 background:pink;
 border-radius:50%;
 opacity:0.6;
@@ -30,6 +30,22 @@ animation:fall linear infinite;
 
 @keyframes fall{
 to{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* ✨ partículas */
+.sparkle{
+position:fixed;
+width:4px;
+height:4px;
+background:white;
+border-radius:50%;
+opacity:0.8;
+animation:spark 3s infinite;
+}
+
+@keyframes spark{
+0%{transform:translateY(0);}
+100%{transform:translateY(100vh);}
 }
 
 /* animação */
@@ -43,7 +59,7 @@ opacity:1;
 transform:translateY(0);
 }
 
-/* líder */
+/* 👑 líder */
 .lider-card{
 border:2px solid gold;
 box-shadow:0 0 25px gold;
@@ -63,12 +79,18 @@ left:50%;
 transform:translateX(-50%) rotate(-20deg);
 }
 
-/* vices */
+/* 🌸 vices */
+.vice-card{
+border:2px solid gold;
+box-shadow:0 0 15px gold;
+}
+
 .vice{
 color:#ff4fd8;
 text-shadow:0 0 10px #ff4fd8;
 }
 
+/* layout */
 .cards{
 display:flex;
 flex-wrap:wrap;
@@ -89,7 +111,42 @@ transition:0.4s;
 transform:scale(1.08);
 }
 
-/* botão servidor */
+header{
+text-align:center;
+padding:60px;
+background:linear-gradient(90deg,#ff00cc,#8000ff);
+}
+
+nav{
+background:black;
+padding:15px;
+text-align:center;
+}
+
+nav a{
+color:#ff4dff;
+margin:0 15px;
+text-decoration:none;
+font-weight:bold;
+}
+
+section{
+padding:60px 20px;
+text-align:center;
+}
+
+ul{
+list-style:none;
+max-width:500px;
+margin:auto;
+text-align:left;
+}
+
+ul li{
+margin:10px 0;
+}
+
+/* botão */
 .server-btn{
 margin-top:20px;
 padding:12px 20px;
@@ -97,18 +154,6 @@ background:linear-gradient(90deg,#ff00cc,#8000ff);
 border:none;
 border-radius:10px;
 color:white;
-cursor:pointer;
-}
-
-/* música */
-.music-btn{
-position:fixed;
-bottom:20px;
-right:20px;
-padding:10px;
-background:#ff00cc;
-border:none;
-border-radius:50%;
 cursor:pointer;
 }
 
@@ -136,7 +181,6 @@ color:white;
 cursor:pointer;
 }
 
-/* mensagem */
 .success{
 display:none;
 color:#00ffcc;
@@ -147,14 +191,13 @@ margin-top:15px;
 
 <body>
 
-<header style="text-align:center;padding:60px;background:linear-gradient(90deg,#ff00cc,#8000ff);">
+<header>
 <h1>🌸 Vale das Cerejeiras 🌸</h1>
 <p>Clã Oficial de Minecraft</p>
-
 <button class="server-btn" onclick="copyIP()">🎮 Entrar no servidor: bawmc.net</button>
 </header>
 
-<nav style="background:black;padding:15px;text-align:center;">
+<nav>
 <a href="#membros">Membros</a>
 <a href="#regras">Regras</a>
 <a href="#recrutamento">Recrutamento</a>
@@ -164,14 +207,27 @@ margin-top:15px;
 <h2>⚔️ Membros</h2>
 
 <div class="cards">
+
 <div class="card lider-card">
 <h3>Líder</h3>
 <p class="lider">Mkzinhuu</p>
 </div>
 
-<div class="card"><h3>Vice</h3><p class="vice">Lunemoon0</p></div>
-<div class="card"><h3>Vice</h3><p class="vice">AndreyBR18</p></div>
-<div class="card"><h3>Vice</h3><p class="vice">Icebfzin1</p></div>
+<div class="card vice-card">
+<h3>Vice</h3>
+<p class="vice">Lunemoon0</p>
+</div>
+
+<div class="card vice-card">
+<h3>Vice</h3>
+<p class="vice">AndreyBR18</p>
+</div>
+
+<div class="card vice-card">
+<h3>Vice</h3>
+<p class="vice">Icebfzin1</p>
+</div>
+
 </div>
 </section>
 
@@ -204,13 +260,6 @@ margin-top:15px;
 <p class="success" id="msg">✅ Inscrição enviada com sucesso!</p>
 </section>
 
-<!-- 🎵 Música -->
-<audio id="music" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b0e7b.mp3" type="audio/mp3">
-</audio>
-
-<button class="music-btn" onclick="toggleMusic()">🎵</button>
-
 <script>
 // pétalas
 for(let i=0;i<40;i++){
@@ -219,6 +268,15 @@ p.className="petal";
 p.style.left=Math.random()*100+"vw";
 p.style.animationDuration=(4+Math.random()*6)+"s";
 document.body.appendChild(p);
+}
+
+// ✨ partículas
+for(let i=0;i<30;i++){
+let s=document.createElement("div");
+s.className="sparkle";
+s.style.left=Math.random()*100+"vw";
+s.style.animationDuration=(2+Math.random()*3)+"s";
+document.body.appendChild(s);
 }
 
 // animação scroll
@@ -237,22 +295,12 @@ navigator.clipboard.writeText("bawmc.net");
 alert("IP copiado!");
 }
 
-// mensagem + envio
+// mensagem
 document.getElementById("form").addEventListener("submit", function(){
 setTimeout(()=>{
 document.getElementById("msg").style.display="block";
 },500);
 });
-
-// música
-let music=document.getElementById("music");
-function toggleMusic(){
-if(music.paused){
-music.play();
-}else{
-music.pause();
-}
-}
 </script>
 
 </body>
