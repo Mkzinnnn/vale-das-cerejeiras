@@ -1,69 +1,259 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Vale das Cerejeiras - Clã Minecraft</title>
-      <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="./styles/style.css">
-   </head>
-   <body>
-      <header>
-         <h1>🌸Vale das Cerejeiras🌸</h1>
-         <p>Clã Oficial de Minecraft</p>
-      </header>
-      <nav>
-         <a href="#membros">Membros</a>
-         <a href="#regras">Regras</a>
-         <a href="#recrutamento">Recrutamento</a>
-      </nav>
-      <section id="membros">
-         <h2>⚔️ Membros</h2>
-         <div class="cards">
-            <div class="card">
-               <h3>Líder</h3>
-               <p>Mkzinhuu</p>
-            </div>
-            <div class="card">
-               <h3>Vice-Líder</h3>
-               <p>Lunemoon0</p>
-            </div>
-            <div class="card">
-               <h3>Vice-Líder</h3>
-               <p>AndreyBR18</p>
-            </div>
-            <div class="card">
-               <h3>Vice-Líder</h3>
-               <p>Icebfzin1</p>
-            </div>
-         </div>
-      </section>
-      <section id="regras">
-         <h2>📜 Regras</h2>
-         <ul>
-            <li>✔ Manter respeito mútuo</li>
-            <li>✔ Não ter preconceito com ninguém</li>
-            <li>✔ Participar das guerras</li>
-            <li>✔ Não trair o clã</li>
-            <li>✔ Ser ativo</li>
-            <li>✔ denunciar quando quebrarem regras</li>
-            <li>✔ não pegar itens sem permissão</li>
-            <li>✔ não criar brigas desnecessárias</li>
-            
-         
-         </ul>
-      </section>
-      <section id="recrutamento">
-         <h2>📩 Recrutamento</h2>
-         <form action="https://formsubmit.co/vcerejeiras@gmail.com" method="POST">
-            <input type="text" name="Nome" placeholder="Seu nome" required>
-            <input type="text" name="Nick" placeholder="Seu nick no Minecraft" required>
-            <input type="number" name="Idade" placeholder="Sua idade" required>
-            <textarea name="Motivo" placeholder="Por que quer entrar no clã?" required></textarea>
-            <input type="hidden" name="_captcha" value="false">
-            <button type="submit">Enviar Inscrição</button>
-         </form>
-      </section>
-      <script src="./scripts/script.js"></script>   
-   </body>
-</html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vale das Cerejeiras</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
+
+body{
+background: radial-gradient(circle at top, #1a0026, #0d001a);
+color:white;
+overflow-x:hidden;
+}
+
+/* 🌸 pétalas */
+.petal{
+position:fixed;
+top:-10px;
+width:12px;
+height:12px;
+background:pink;
+border-radius:50%;
+opacity:0.6;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* animação */
+.fade{
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+.fade.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* líder */
+.lider-card{
+border:2px solid gold;
+box-shadow:0 0 25px gold;
+}
+
+.lider{
+color:gold;
+text-shadow:0 0 10px gold;
+position:relative;
+}
+
+.lider::before{
+content:"👑";
+position:absolute;
+top:-25px;
+left:50%;
+transform:translateX(-50%) rotate(-20deg);
+}
+
+/* vices */
+.vice{
+color:#ff4fd8;
+text-shadow:0 0 10px #ff4fd8;
+}
+
+.cards{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+}
+
+.card{
+background:#111;
+padding:30px;
+width:220px;
+border-radius:15px;
+box-shadow:0 0 20px #ff00cc;
+transition:0.4s;
+}
+
+.card:hover{
+transform:scale(1.08);
+}
+
+/* botão servidor */
+.server-btn{
+margin-top:20px;
+padding:12px 20px;
+background:linear-gradient(90deg,#ff00cc,#8000ff);
+border:none;
+border-radius:10px;
+color:white;
+cursor:pointer;
+}
+
+/* música */
+.music-btn{
+position:fixed;
+bottom:20px;
+right:20px;
+padding:10px;
+background:#ff00cc;
+border:none;
+border-radius:50%;
+cursor:pointer;
+}
+
+/* form */
+form{
+max-width:400px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+input,textarea{
+padding:10px;
+border:none;
+border-radius:8px;
+}
+
+button{
+padding:10px;
+border:none;
+border-radius:8px;
+background:#ff00cc;
+color:white;
+cursor:pointer;
+}
+
+/* mensagem */
+.success{
+display:none;
+color:#00ffcc;
+margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<header style="text-align:center;padding:60px;background:linear-gradient(90deg,#ff00cc,#8000ff);">
+<h1>🌸 Vale das Cerejeiras 🌸</h1>
+<p>Clã Oficial de Minecraft</p>
+
+<button class="server-btn" onclick="copyIP()">🎮 Entrar no servidor: bawmc.net</button>
+</header>
+
+<nav style="background:black;padding:15px;text-align:center;">
+<a href="#membros">Membros</a>
+<a href="#regras">Regras</a>
+<a href="#recrutamento">Recrutamento</a>
+</nav>
+
+<section id="membros" class="fade">
+<h2>⚔️ Membros</h2>
+
+<div class="cards">
+<div class="card lider-card">
+<h3>Líder</h3>
+<p class="lider">Mkzinhuu</p>
+</div>
+
+<div class="card"><h3>Vice</h3><p class="vice">Lunemoon0</p></div>
+<div class="card"><h3>Vice</h3><p class="vice">AndreyBR18</p></div>
+<div class="card"><h3>Vice</h3><p class="vice">Icebfzin1</p></div>
+</div>
+</section>
+
+<section id="regras" class="fade">
+<h2>📜 Regras</h2>
+<ul>
+<li>✔ Respeitar todos</li>
+<li>✔ Manter respeito mútuo</li>
+<li>✔ Não ter preconceito</li>
+<li>✔ Participar das guerras</li>
+<li>✔ Não trair</li>
+<li>✔ Ser ativo</li>
+</ul>
+</section>
+
+<section id="recrutamento" class="fade">
+<h2>📩 Recrutamento</h2>
+
+<form id="form" action="https://formsubmit.co/vcerejeiras@gmail.com" method="POST">
+<input type="text" name="Nome" placeholder="Seu nome" required>
+<input type="text" name="Nick" placeholder="Nick no Minecraft" required>
+<input type="number" name="Idade" placeholder="Idade" required>
+<textarea name="Motivo" placeholder="Por que quer entrar?" required></textarea>
+
+<input type="hidden" name="_captcha" value="false">
+
+<button type="submit">Enviar</button>
+</form>
+
+<p class="success" id="msg">✅ Inscrição enviada com sucesso!</p>
+</section>
+
+<!-- 🎵 Música -->
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b0e7b.mp3" type="audio/mp3">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()">🎵</button>
+
+<script>
+// pétalas
+for(let i=0;i<40;i++){
+let p=document.createElement("div");
+p.className="petal";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(4+Math.random()*6)+"s";
+document.body.appendChild(p);
+}
+
+// animação scroll
+const faders=document.querySelectorAll(".fade");
+window.addEventListener("scroll",()=>{
+faders.forEach(el=>{
+if(el.getBoundingClientRect().top<window.innerHeight-50){
+el.classList.add("show");
+}
+});
+});
+
+// copiar IP
+function copyIP(){
+navigator.clipboard.writeText("bawmc.net");
+alert("IP copiado!");
+}
+
+// mensagem + envio
+document.getElementById("form").addEventListener("submit", function(){
+setTimeout(()=>{
+document.getElementById("msg").style.display="block";
+},500);
+});
+
+// música
+let music=document.getElementById("music");
+function toggleMusic(){
+if(music.paused){
+music.play();
+}else{
+music.pause();
+}
+}
+</script>
+
+</body>
+   </html>
