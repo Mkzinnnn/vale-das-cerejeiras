@@ -71,13 +71,6 @@ text-shadow:0 0 10px gold;
 position:relative;
 }
 
-.lider::before{
-content:"👑";
-position:absolute;
-top:-25px;
-left:50%;
-transform:translateX(-50%) rotate(-20deg);
-}
 
 /* 🌸 vices */
 .vice-card{
@@ -89,7 +82,16 @@ box-shadow:0 0 15px gold;
 color:#ff4fd8;
 text-shadow:0 0 10px #ff4fd8;
 }
-
+   
+.lider::before{
+content:"👑";
+position:absolute;
+top:-35px;
+left:20px;
+transform:rotate(-25deg);
+font-size:22px;
+   }
+   
 /* layout */
 .cards{
 display:flex;
